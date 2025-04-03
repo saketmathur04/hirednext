@@ -81,3 +81,34 @@ export async function setSessionCookie(idToken: string) {
     sameSite: "lax",
   });
 }
+
+export async function getCurrentUser(): Promise<null | User> {
+  const cookieStore = await cookies();
+  const sessionCookie = cookieStore.get("session")?.value;
+
+  if (!sessionCookie) {
+    return null;
+  }
+
+  try {
+    const decodedClaims = await auth.verifySessionCookie(sessionCookie, true);
+
+    const user = await db.collection("users").doc(decodedClaims.uid).get();
+
+    if (!user.exists) {
+      return null;
+    }
+    return {
+        ...user.data(),
+        id: user.id,
+    } as User;
+  } catch (error) {
+    console.error("Error verifying session cookie:", error);
+    return null;
+  }
+}
+
+export async function isAuthenticated() {
+    const user = await getCurrentUser();
+    return !!user;
+}
