@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { interviewer } from "../../constants";
+import { createFeedback } from "@/lib/actions/general.action";
 
 enum CallStatus {
   INACTIVE = "INACTIVE",
@@ -83,7 +84,7 @@ const Agent = ({ userName, userId, type, interviewId, questions }: AgentProps) =
         interviewId: interviewId!,
         userId: userId!,
         transcript: messages,
-        feedbackId,
+        // feedbackId,
       });
 
       if (success && id) {
