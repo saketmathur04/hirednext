@@ -84,7 +84,6 @@ const Agent = ({ userName, userId, type, interviewId, questions }: AgentProps) =
         interviewId: interviewId!,
         userId: userId!,
         transcript: messages,
-        // feedbackId,
       });
 
       if (success && id) {

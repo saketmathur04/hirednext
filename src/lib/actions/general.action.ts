@@ -59,7 +59,7 @@ export async function getInterviewsByUserId(userId: string): Promise<Interview[]
   }
 
   export async function createFeedback(params: CreateFeedbackParams) {
-    const { interviewId, userId, transcript } = params;
+    const { interviewId, userId, transcript, id } = params;
   
     try {
       const formattedTranscript = transcript
@@ -101,15 +101,15 @@ export async function getInterviewsByUserId(userId: string): Promise<Interview[]
         createdAt: new Date().toISOString(),
       };
   
-    //   let feedbackRef;
+      let feedbackRef;
   
-    //   if (feedbackId) {
-    //     feedbackRef = db.collection("feedback").doc(feedbackId);
-    //   } else {
-    //     feedbackRef = db.collection("feedback").doc();
-    //   }
+      if (id) {
+        feedbackRef = db.collection("feedback").doc(id);
+      } else {
+        feedbackRef = db.collection("feedback").doc();
+      }
   
-    //   await feedbackRef.set(feedback);
+      await feedbackRef.set(feedback);
   
       return { success: true, feedbackId: feedback.interviewId };
     } catch (error) {
