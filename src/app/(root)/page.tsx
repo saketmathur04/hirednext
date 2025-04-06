@@ -36,7 +36,9 @@ async function Home() {
             <Link href="/interview">Start an Interview</Link>
           </Button>
           <Button asChild className="btn-primary max-sm:w-full">
-            <Link href="https://huggingface.co/spaces/Hiteshbhattacharjee13/resume-analyzer">Analyze Your Resume</Link>
+            <Link href="https://huggingface.co/spaces/Hiteshbhattacharjee13/resume-analyzer" target="_blank" rel="noopener noreferrer">
+              Analyze Your Resume
+            </Link>
           </Button></div>
         </div>
 
