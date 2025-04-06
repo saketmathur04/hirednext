@@ -12,11 +12,15 @@ async function Home() {
   const user = await getCurrentUser();
 
   const [userInterviews, allInterview] = await Promise.all([
+    // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
     getInterviewsByUserId(user?.id!),
+    // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
     getLatestInterviews({ userId: user?.id! }),
   ]);
 
+  // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
   const hasPastInterviews = userInterviews?.length! > 0;
+  // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
   const hasUpcomingInterviews = allInterview?.length! > 0;
 
   return (

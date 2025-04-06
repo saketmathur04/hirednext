@@ -9,8 +9,30 @@ const monaSans = Mona_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "PrepWise",
-  description: "An AI-powered platform for prepring for mock interviews.",
+  title: "hiredNext",
+  description: "An AI-powered platform for preparing for mock interviews.",
+  openGraph: {
+    title: "hiredNext",
+    description: "An AI-powered platform for preparing for mock interviews.",
+    url: "https://hirednext.notlocalhost.fun", // ✅ updated domain
+    siteName: "hiredNext",
+    images: [
+      {
+        url: "https://hirednext.notlocalhost.fun/logo.png", // ✅ updated image URL
+        width: 1200,
+        height: 630,
+        alt: "hiredNext",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "hiredNext",
+    description: "An AI-powered platform for preparing for mock interviews.",
+    images: ["https://hirednext.notlocalhost.fun/logo.png"], // ✅ updated
+  },
 };
 
 export default function RootLayout({
@@ -20,9 +42,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body
-        className={`${monaSans.className} antialiased pattern`}
-      >
+      <body className={`${monaSans.className} antialiased pattern`}>
         {children}
         <Toaster />
       </body>

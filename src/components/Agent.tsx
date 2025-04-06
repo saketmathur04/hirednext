@@ -75,6 +75,7 @@ const Agent = ({ userName, userId, type, interviewId, questions }: AgentProps) =
             handleGenerateFeedback(messages);
           }
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [messages, callStatus, type, userId, router])
 
     const handleGenerateFeedback = async (messages: SavedMessage[]) => {
