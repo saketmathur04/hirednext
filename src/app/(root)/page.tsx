@@ -5,8 +5,10 @@ import { Button } from "@/components/ui/button";
 import InterviewCard from "@/components/InterviewCard";
 
 import { getCurrentUser } from "@/lib/actions/auth.action";
-import { getInterviewsByUserId, getLatestInterviews } from "@/lib/actions/general.action";
-
+import {
+  getInterviewsByUserId,
+  getLatestInterviews,
+} from "@/lib/actions/general.action";
 
 async function Home() {
   const user = await getCurrentUser();
@@ -31,10 +33,11 @@ async function Home() {
           <p className="text-lg">
             Practice real interview questions & get instant feedback
           </p>
-<div className="flex gap-2">
-          <Button asChild className="btn-primary max-sm:w-full">
-            <Link href="/interview">Start an Interview</Link>
-          </Button></div>
+          <div className="flex gap-2">
+            <Button asChild className="btn-primary max-sm:w-full">
+              <Link href="/interview">Start an Interview</Link>
+            </Button>
+          </div>
         </div>
 
         <Image

@@ -22,9 +22,9 @@ export async function signUp(params: SignUpParams) {
     });
 
     return {
-        success: true,
-        message: "User created successfully",
-    }
+      success: true,
+      message: "User created successfully",
+    };
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error("Error signing up:", error);
@@ -99,8 +99,8 @@ export async function getCurrentUser(): Promise<null | User> {
       return null;
     }
     return {
-        ...user.data(),
-        id: user.id,
+      ...user.data(),
+      id: user.id,
     } as User;
   } catch (error) {
     console.error("Error verifying session cookie:", error);
@@ -109,7 +109,6 @@ export async function getCurrentUser(): Promise<null | User> {
 }
 
 export async function isAuthenticated() {
-    const user = await getCurrentUser();
-    return !!user;
+  const user = await getCurrentUser();
+  return !!user;
 }
-
