@@ -3,24 +3,20 @@ import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
 import InterviewCard from "@/components/InterviewCard";
+import JobDropdown from "@/components/JobDropdown"; // ✅ Import your dropdown component
 
 import { getCurrentUser } from "@/lib/actions/auth.action";
 import { getInterviewsByUserId, getLatestInterviews } from "@/lib/actions/general.action";
-
 
 async function Home() {
   const user = await getCurrentUser();
 
   const [userInterviews, allInterview] = await Promise.all([
-    // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
     getInterviewsByUserId(user?.id!),
-    // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
     getLatestInterviews({ userId: user?.id! }),
   ]);
 
-  // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
   const hasPastInterviews = userInterviews?.length! > 0;
-  // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
   const hasUpcomingInterviews = allInterview?.length! > 0;
 
   return (
@@ -31,15 +27,32 @@ async function Home() {
           <p className="text-lg">
             Practice real interview questions & get instant feedback
           </p>
-<div className="flex gap-2">
-          <Button asChild className="btn-primary max-sm:w-full">
-            <Link href="/interview">Start an Interview</Link>
-          </Button>
-          <Button asChild className="btn-primary max-sm:w-full">
-            <Link href="https://huggingface.co/spaces/Hiteshbhattacharjee13/resume-analyzer" target="_blank" rel="noopener noreferrer">
-              Analyze Your Resume
-            </Link>
-          </Button></div>
+          <div className="flex gap-2 flex-wrap">
+            <Button asChild className="btn-primary max-sm:w-full">
+              <Link href="/interview">Start an Interview</Link>
+            </Button>
+            <Button asChild className="btn-primary max-sm:w-full">
+              <Link
+                href="https://huggingface.co/spaces/Hiteshbhattacharjee13/resume-analyzer"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Analyze Your Resume
+              </Link>
+            </Button>
+            <Button asChild className="btn-primary max-sm:w-full">
+              <Link
+                href="https://www.interviewbit.com/practice/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Free Interview Material
+              </Link>
+            </Button>
+          </div>
+
+          {/* ✅ Use your client dropdown component here */}
+          <JobDropdown />
         </div>
 
         <Image
@@ -53,7 +66,6 @@ async function Home() {
 
       <section className="flex flex-col gap-6 mt-8">
         <h2>Your Interviews</h2>
-
         <div className="interviews-section">
           {hasPastInterviews ? (
             userInterviews?.map((interview) => (
@@ -75,7 +87,6 @@ async function Home() {
 
       <section className="flex flex-col gap-6 mt-8">
         <h2>Take Interviews</h2>
-
         <div className="interviews-section">
           {hasUpcomingInterviews ? (
             allInterview?.map((interview) => (
